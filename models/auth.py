@@ -7,8 +7,8 @@ from project import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, unique=True, nullable=False)
-    _password = db.Column("password", db.String, nullable=False)
+    username = db.Column(db.String(16), unique=True, nullable=False)
+    _password = db.Column("password", db.String(255), nullable=False)
 
     @hybrid_property
     def password(self):

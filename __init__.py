@@ -21,7 +21,7 @@ def create_app(config=None):
 
     if db_url is None:
         # default to a sqlite database in the instance folder
-        db_url = "sqlite:///" + os.path.join(app.instance_path, "project.sqlite")
+        db_url = "mysql+pymysql://root:@localhost:3306/test"
         # ensure the instance folder exists
         os.makedirs(app.instance_path, exist_ok=True)
 

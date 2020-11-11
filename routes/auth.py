@@ -49,11 +49,3 @@ def logout():
     """Clear the current session, including the stored user id."""
     AuthController().logout()
     return jsonify({'result': 'done'}), 200
-
-
-@bp.route('/protected', methods=['GET'])
-@jwt_required
-def protected():
-    # Access the identity of the current user with get_jwt_identity
-    current_user = AuthController().protected()
-    return jsonify(logged_in_as=current_user), 200
