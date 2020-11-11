@@ -2,11 +2,14 @@ from flask import Blueprint
 from flask import request
 from flask import jsonify
 from project.controller.blog import BlogController
+from flask_jwt_extended import (jwt_required)
+
 
 bp = Blueprint("blog", __name__, url_prefix="/api")
 
 
 @bp.route("/")
+@jwt_required
 def index():
     """Show all the posts, most recent first."""
     list_post = BlogController().index()
@@ -15,6 +18,7 @@ def index():
 
 
 @bp.route("/create", methods=["POST"])
+@jwt_required
 def create():
     """Create a new post for the current user."""
     title = request.json["title"]
@@ -25,6 +29,7 @@ def create():
 
 
 @bp.route("/update", methods=["PUT"])
+@jwt_required
 def update():
     """Update a post if the current user is the author."""
     id = request.json["id"]
@@ -36,6 +41,7 @@ def update():
 
 
 @bp.route("/delete/<id>", methods=["DELETE"])
+@jwt_required
 def delete(id):
     """Delete a post.
 
@@ -48,6 +54,7 @@ def delete(id):
 
 
 @bp.route("/search/<title>", methods=["GET"])
+@jwt_required
 def search(title):
     """Search post by title"""
     list_post = BlogController().search(title)

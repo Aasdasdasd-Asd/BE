@@ -44,7 +44,7 @@ def login():
 # Protect a view with jwt_required, which requires a valid access token
 # in the request to access.
 
-@bp.route("/logout")
+@bp.route("/logout", methods=['POST'])
 def logout():
     """Clear the current session, including the stored user id."""
     AuthController().logout()
