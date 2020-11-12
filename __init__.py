@@ -17,16 +17,16 @@ def create_app(config=None):
     jwt = JWTManager(app)
 
     # some deploy systems set the database url in the environ
-    db_url = os.environ.get("DATABASE_URL")
+    # db_url = os.environ.get("DATABASE_URL")
 
-    if db_url is None:
+    # if db_url is None:
         # default to a sqlite database in the instance folder
         # db_url = "sqlite:///" + os.path.join(app.instance_path, "project.sqlite")
 
         # default to a MySQL database in the instance folder
-        db_url = "mysql+pymysql://Cong:123456@localhost:3306/project"
+    db_url = "mysql+pymysql://Cong:123456@localhost:3306/project"
         # ensure the instance folder exists
-        os.makedirs(app.instance_path, exist_ok=True)
+    os.makedirs(app.instance_path, exist_ok=True)
 
     app.config.from_mapping(
         # default secret that should be overridden in environ or config
